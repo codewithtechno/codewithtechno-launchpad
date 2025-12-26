@@ -21,32 +21,39 @@ const Footer = () => {
               </p>
               <div className="flex items-center gap-4">
                 <a
-                  href="#"
+                  href="https://x.com/codewithtechno?t=g2rIghIyrX05xkDf_lTuqQ&s=08"
                   className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label="Twitter"
                 >
                   <Twitter className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/company/codewithtechno/"
                   className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/codewithtechno.in/"
                   className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.youtube.com/channel/UCw8ni83XFNvkoFjLfwx5YUQ"
                   className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label="YouTube"
                 >
                   <Youtube className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.commudle.com/communities/codewithtechno"
+                  className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                  aria-label="Commudle"
+                >
+                  <Commudle className="h-5 w-5" />
                 </a>
               </div>
             </div>
@@ -84,7 +91,7 @@ const Footer = () => {
               <ul className="space-y-3 text-muted-foreground">
                 <li>
                   <a href="mailto:hello@codewithtechno.com" className="hover:text-foreground transition-colors">
-                    hello@codewithtechno.com
+                    contat@codewithtechno.in
                   </a>
                 </li>
                 <li>
@@ -99,9 +106,9 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} CodeWithTechno. All rights reserved.
             </p>
-            <p className="text-sm text-muted-foreground">
+            {/* <p className="text-sm text-muted-foreground">
               Built with <span className="text-primary">execution</span> in mind.
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
