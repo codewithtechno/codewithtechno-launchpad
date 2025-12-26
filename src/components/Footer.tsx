@@ -1,5 +1,5 @@
 import logo from "@/assets/logo.png";
-import { Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Twitter, Linkedin, Instagram, Youtube, Users } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -53,7 +53,7 @@ const Footer = () => {
                   className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label="Commudle"
                 >
-                  <Commudle className="h-5 w-5" />
+                  <Users className="h-5 w-5" />
                 </a>
               </div>
             </div>
