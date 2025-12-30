@@ -14,16 +14,212 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      applications: {
+        Row: {
+          additional_info: string | null
+          admin_notes: string | null
+          availability: string | null
+          created_at: string
+          experience: string | null
+          id: string
+          motivation: string | null
+          portfolio_link: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          sprint_id: string
+          status: Database["public"]["Enums"]["application_status"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          additional_info?: string | null
+          admin_notes?: string | null
+          availability?: string | null
+          created_at?: string
+          experience?: string | null
+          id?: string
+          motivation?: string | null
+          portfolio_link?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          sprint_id: string
+          status?: Database["public"]["Enums"]["application_status"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          additional_info?: string | null
+          admin_notes?: string | null
+          availability?: string | null
+          created_at?: string
+          experience?: string | null
+          id?: string
+          motivation?: string | null
+          portfolio_link?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          sprint_id?: string
+          status?: Database["public"]["Enums"]["application_status"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "applications_sprint_id_fkey"
+            columns: ["sprint_id"]
+            isOneToOne: false
+            referencedRelation: "sprints"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          email: string | null
+          experience_level: string | null
+          full_name: string | null
+          github_url: string | null
+          id: string
+          linkedin_url: string | null
+          phone: string | null
+          portfolio_url: string | null
+          skills: string[] | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          email?: string | null
+          experience_level?: string | null
+          full_name?: string | null
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          skills?: string[] | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          email?: string | null
+          experience_level?: string | null
+          full_name?: string | null
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          skills?: string[] | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      sprints: {
+        Row: {
+          cover_image_url: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          duration_days: number
+          eligibility: string | null
+          end_date: string | null
+          id: string
+          is_accepting_applications: boolean | null
+          is_active: boolean | null
+          max_participants: number | null
+          sprint_type: Database["public"]["Enums"]["sprint_type"]
+          start_date: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          duration_days?: number
+          eligibility?: string | null
+          end_date?: string | null
+          id?: string
+          is_accepting_applications?: boolean | null
+          is_active?: boolean | null
+          max_participants?: number | null
+          sprint_type: Database["public"]["Enums"]["sprint_type"]
+          start_date?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          duration_days?: number
+          eligibility?: string | null
+          end_date?: string | null
+          id?: string
+          is_accepting_applications?: boolean | null
+          is_active?: boolean | null
+          max_participants?: number | null
+          sprint_type?: Database["public"]["Enums"]["sprint_type"]
+          start_date?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_user_role: {
+        Args: { _user_id: string }
+        Returns: Database["public"]["Enums"]["app_role"]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "user" | "admin" | "mentor"
+      application_status: "pending" | "accepted" | "rejected"
+      sprint_type: "design" | "development"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +346,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["user", "admin", "mentor"],
+      application_status: ["pending", "accepted", "rejected"],
+      sprint_type: ["design", "development"],
+    },
   },
 } as const
