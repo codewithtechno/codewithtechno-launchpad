@@ -113,9 +113,11 @@ const MyApplications = () => {
                         </div>
                       )}
 
-                      {app.status === 'rejected' && app.admin_notes && (
+                      {app.status === 'rejected' && (
                         <div className="mt-4 p-4 bg-destructive/10 rounded-lg">
-                          <p className="text-sm text-muted-foreground">{app.admin_notes}</p>
+                          <p className="text-sm text-muted-foreground">
+                            Unfortunately, your application was not selected. Please try again for future sprints!
+                          </p>
                         </div>
                       )}
                     </CardContent>
