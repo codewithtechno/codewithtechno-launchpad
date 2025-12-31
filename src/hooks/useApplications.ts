@@ -3,7 +3,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 
-export interface Application {
+// User-facing application data (excludes admin_notes for security)
+export interface UserApplication {
   id: string;
   user_id: string;
   sprint_id: string;
@@ -13,14 +14,18 @@ export interface Application {
   portfolio_link: string | null;
   availability: string | null;
   additional_info: string | null;
-  admin_notes: string | null;
-  reviewed_by: string | null;
   reviewed_at: string | null;
   created_at: string;
   updated_at: string;
 }
 
-export interface ApplicationWithSprint extends Application {
+// Full application data (includes admin fields - only for admins)
+export interface Application extends UserApplication {
+  admin_notes: string | null;
+  reviewed_by: string | null;
+}
+
+export interface UserApplicationWithSprint extends UserApplication {
   sprints: {
     title: string;
     sprint_type: 'design' | 'development';
@@ -43,7 +48,7 @@ export interface ApplicationWithProfile extends Application {
 
 export function useApplications() {
   const { user, isAdmin } = useAuth();
-  const [applications, setApplications] = useState<ApplicationWithSprint[]>([]);
+  const [applications, setApplications] = useState<UserApplicationWithSprint[]>([]);
   const [allApplications, setAllApplications] = useState<ApplicationWithProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
@@ -55,10 +60,22 @@ export function useApplications() {
       return;
     }
 
+    // Explicitly select only user-visible columns (excludes admin_notes, reviewed_by)
     const { data, error } = await supabase
       .from('applications')
       .select(`
-        *,
+        id,
+        user_id,
+        sprint_id,
+        status,
+        motivation,
+        experience,
+        portfolio_link,
+        availability,
+        additional_info,
+        reviewed_at,
+        created_at,
+        updated_at,
         sprints (
           title,
           sprint_type,
@@ -70,9 +87,9 @@ export function useApplications() {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('Error fetching applications:', error);
+      if (import.meta.env.DEV) console.error('Error fetching applications:', error);
     } else {
-      setApplications(data as unknown as ApplicationWithSprint[]);
+      setApplications(data as unknown as UserApplicationWithSprint[]);
     }
     setLoading(false);
   };
