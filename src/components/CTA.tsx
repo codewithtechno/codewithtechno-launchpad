@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, forwardRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const CTA = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const CTA = forwardRef<HTMLElement>((_, forwardedRef) => {
+  const localRef = useRef(null);
+  const ref = forwardedRef || localRef;
+  const isInView = useInView(localRef, { once: true, margin: "-100px" });
 
   return (
     <section className="py-24 lg:py-32 relative overflow-hidden" ref={ref}>
@@ -38,19 +40,25 @@ const CTA = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button variant="hero" size="lg">
-                Join CodeWithTechno
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-              <Button variant="hero-outline" size="lg">
-                Explore Programs
-              </Button>
+              <Link to="/auth">
+                <Button variant="hero" size="lg">
+                  Join CodeWithTechno
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/sprints">
+                <Button variant="hero-outline" size="lg">
+                  Explore Programs
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
       </div>
     </section>
   );
-};
+});
+
+CTA.displayName = "CTA";
 
 export default CTA;

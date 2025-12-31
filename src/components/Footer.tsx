@@ -1,7 +1,8 @@
+import { forwardRef } from "react";
 import logo from "@/assets/logo.png";
 import { Twitter, Linkedin, Instagram, Youtube, Users } from "lucide-react";
 
-const Footer = () => {
+const Footer = forwardRef<HTMLElement>((_, ref) => {
   return (
     <footer className="py-16 border-t border-border">
       <div className="container mx-auto px-4">
@@ -114,6 +115,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
+
+Footer.displayName = "Footer";
 
 export default Footer;

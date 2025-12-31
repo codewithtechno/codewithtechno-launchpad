@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
@@ -14,6 +16,8 @@ const navLinks = [
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, isAdmin, signOut } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +26,11 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
 
   return (
     <header
@@ -56,12 +65,31 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
-              Explore Programs
-            </Button>
-            <Button variant="default" size="sm">
-              Join Community
-            </Button>
+            <Link to="/sprints">
+              <Button variant="ghost" size="sm">
+                Sprints
+              </Button>
+            </Link>
+            {user ? (
+              <>
+                <Link to={isAdmin ? "/admin" : "/dashboard"}>
+                  <Button variant="ghost" size="sm">
+                    <User className="h-4 w-4 mr-2" />
+                    {isAdmin ? "Admin" : "Dashboard"}
+                  </Button>
+                </Link>
+                <Button variant="outline" size="sm" onClick={handleSignOut}>
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <Link to="/auth">
+                <Button variant="default" size="sm">
+                  Sign In
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -99,12 +127,29 @@ const Navbar = () => {
                   </a>
                 ))}
                 <div className="flex flex-col gap-2 pt-4">
-                  <Button variant="outline" className="w-full">
-                    Explore Programs
-                  </Button>
-                  <Button variant="default" className="w-full">
-                    Join Community
-                  </Button>
+                  <Link to="/sprints" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button variant="outline" className="w-full">
+                      Sprints
+                    </Button>
+                  </Link>
+                  {user ? (
+                    <>
+                      <Link to={isAdmin ? "/admin" : "/dashboard"} onClick={() => setIsMobileMenuOpen(false)}>
+                        <Button variant="ghost" className="w-full">
+                          {isAdmin ? "Admin Dashboard" : "My Dashboard"}
+                        </Button>
+                      </Link>
+                      <Button variant="outline" className="w-full" onClick={() => { handleSignOut(); setIsMobileMenuOpen(false); }}>
+                        Sign Out
+                      </Button>
+                    </>
+                  ) : (
+                    <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button variant="default" className="w-full">
+                        Sign In
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </motion.div>
