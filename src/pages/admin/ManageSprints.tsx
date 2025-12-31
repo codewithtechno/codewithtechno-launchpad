@@ -36,7 +36,7 @@ const ManageSprints = () => {
     e.preventDefault();
     setSubmitting(true);
     
-    const sprintData = { ...formData, created_by: user?.id, start_date: formData.start_date || null, end_date: formData.end_date || null };
+    const sprintData = { ...formData, created_by: user?.id, start_date: formData.start_date || null, end_date: formData.end_date || null, cover_image_url: null };
     
     if (editingSprint) {
       await updateSprint(editingSprint.id, sprintData);
