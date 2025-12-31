@@ -201,7 +201,59 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      user_applications: {
+        Row: {
+          additional_info: string | null
+          availability: string | null
+          created_at: string | null
+          experience: string | null
+          id: string | null
+          motivation: string | null
+          portfolio_link: string | null
+          reviewed_at: string | null
+          sprint_id: string | null
+          status: Database["public"]["Enums"]["application_status"] | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          additional_info?: string | null
+          availability?: string | null
+          created_at?: string | null
+          experience?: string | null
+          id?: string | null
+          motivation?: string | null
+          portfolio_link?: string | null
+          reviewed_at?: string | null
+          sprint_id?: string | null
+          status?: Database["public"]["Enums"]["application_status"] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          additional_info?: string | null
+          availability?: string | null
+          created_at?: string | null
+          experience?: string | null
+          id?: string | null
+          motivation?: string | null
+          portfolio_link?: string | null
+          reviewed_at?: string | null
+          sprint_id?: string | null
+          status?: Database["public"]["Enums"]["application_status"] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "applications_sprint_id_fkey"
+            columns: ["sprint_id"]
+            isOneToOne: false
+            referencedRelation: "sprints"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       get_user_role: {
