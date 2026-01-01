@@ -15,6 +15,10 @@ export interface Sprint {
   is_active: boolean;
   is_accepting_applications: boolean;
   cover_image_url: string | null;
+  is_paid: boolean;
+  ticket_price: number | null;
+  early_bird_price: number | null;
+  early_bird_seats: number | null;
   created_by: string | null;
   created_at: string;
   updated_at: string;
