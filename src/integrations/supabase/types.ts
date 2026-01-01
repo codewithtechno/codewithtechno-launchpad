@@ -85,6 +85,116 @@ export type Database = {
           },
         ]
       }
+      event_registrations: {
+        Row: {
+          created_at: string
+          event_id: string
+          id: string
+          paid_at: string | null
+          payment_amount: number | null
+          payment_id: string | null
+          payment_status: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+          id?: string
+          paid_at?: string | null
+          payment_amount?: number | null
+          payment_id?: string | null
+          payment_status?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
+          id?: string
+          paid_at?: string | null
+          payment_amount?: number | null
+          payment_id?: string | null
+          payment_status?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_registrations_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          cover_image_url: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          early_bird_price: number | null
+          early_bird_seats: number | null
+          event_date: string
+          event_time: string | null
+          event_type: Database["public"]["Enums"]["event_type"]
+          id: string
+          is_accepting_registrations: boolean | null
+          is_active: boolean | null
+          is_paid: boolean | null
+          location: string | null
+          max_participants: number | null
+          ticket_price: number | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          early_bird_price?: number | null
+          early_bird_seats?: number | null
+          event_date: string
+          event_time?: string | null
+          event_type?: Database["public"]["Enums"]["event_type"]
+          id?: string
+          is_accepting_registrations?: boolean | null
+          is_active?: boolean | null
+          is_paid?: boolean | null
+          location?: string | null
+          max_participants?: number | null
+          ticket_price?: number | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          early_bird_price?: number | null
+          early_bird_seats?: number | null
+          event_date?: string
+          event_time?: string | null
+          event_type?: Database["public"]["Enums"]["event_type"]
+          id?: string
+          is_accepting_registrations?: boolean | null
+          is_active?: boolean | null
+          is_paid?: boolean | null
+          location?: string | null
+          max_participants?: number | null
+          ticket_price?: number | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -295,6 +405,7 @@ export type Database = {
     Enums: {
       app_role: "user" | "admin" | "mentor"
       application_status: "pending" | "accepted" | "rejected"
+      event_type: "online" | "offline"
       sprint_type: "design" | "development"
     }
     CompositeTypes: {
@@ -425,6 +536,7 @@ export const Constants = {
     Enums: {
       app_role: ["user", "admin", "mentor"],
       application_status: ["pending", "accepted", "rejected"],
+      event_type: ["online", "offline"],
       sprint_type: ["design", "development"],
     },
   },
