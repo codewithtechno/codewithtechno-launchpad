@@ -23,6 +23,10 @@ export type Database = {
           experience: string | null
           id: string
           motivation: string | null
+          paid_at: string | null
+          payment_amount: number | null
+          payment_id: string | null
+          payment_status: string | null
           portfolio_link: string | null
           reviewed_at: string | null
           reviewed_by: string | null
@@ -39,6 +43,10 @@ export type Database = {
           experience?: string | null
           id?: string
           motivation?: string | null
+          paid_at?: string | null
+          payment_amount?: number | null
+          payment_id?: string | null
+          payment_status?: string | null
           portfolio_link?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
@@ -55,6 +63,10 @@ export type Database = {
           experience?: string | null
           id?: string
           motivation?: string | null
+          paid_at?: string | null
+          payment_amount?: number | null
+          payment_id?: string | null
+          payment_status?: string | null
           portfolio_link?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
@@ -131,14 +143,18 @@ export type Database = {
           created_by: string | null
           description: string | null
           duration_days: number
+          early_bird_price: number | null
+          early_bird_seats: number | null
           eligibility: string | null
           end_date: string | null
           id: string
           is_accepting_applications: boolean | null
           is_active: boolean | null
+          is_paid: boolean | null
           max_participants: number | null
           sprint_type: Database["public"]["Enums"]["sprint_type"]
           start_date: string | null
+          ticket_price: number | null
           title: string
           updated_at: string
         }
@@ -148,14 +164,18 @@ export type Database = {
           created_by?: string | null
           description?: string | null
           duration_days?: number
+          early_bird_price?: number | null
+          early_bird_seats?: number | null
           eligibility?: string | null
           end_date?: string | null
           id?: string
           is_accepting_applications?: boolean | null
           is_active?: boolean | null
+          is_paid?: boolean | null
           max_participants?: number | null
           sprint_type: Database["public"]["Enums"]["sprint_type"]
           start_date?: string | null
+          ticket_price?: number | null
           title: string
           updated_at?: string
         }
@@ -165,14 +185,18 @@ export type Database = {
           created_by?: string | null
           description?: string | null
           duration_days?: number
+          early_bird_price?: number | null
+          early_bird_seats?: number | null
           eligibility?: string | null
           end_date?: string | null
           id?: string
           is_accepting_applications?: boolean | null
           is_active?: boolean | null
+          is_paid?: boolean | null
           max_participants?: number | null
           sprint_type?: Database["public"]["Enums"]["sprint_type"]
           start_date?: string | null
+          ticket_price?: number | null
           title?: string
           updated_at?: string
         }
