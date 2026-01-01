@@ -70,6 +70,11 @@ const Navbar = () => {
                 Sprints
               </Button>
             </Link>
+            <Link to="/events">
+              <Button variant="ghost" size="sm">
+                Events
+              </Button>
+            </Link>
             {user ? (
               <>
                 <Link to={isAdmin ? "/admin" : "/dashboard"}>
@@ -130,6 +135,11 @@ const Navbar = () => {
                   <Link to="/sprints" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button variant="outline" className="w-full">
                       Sprints
+                    </Button>
+                  </Link>
+                  <Link to="/events" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button variant="outline" className="w-full">
+                      Events
                     </Button>
                   </Link>
                   {user ? (

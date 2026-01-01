@@ -11,6 +11,7 @@ import {
   Shield,
   Menu,
   X,
+  Calendar,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -32,13 +33,16 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const navItems = [
     { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
     { href: '/dashboard/applications', label: 'My Applications', icon: FileText },
+    { href: '/dashboard/events', label: 'My Events', icon: Calendar },
     { href: '/dashboard/profile', label: 'Profile', icon: User },
   ];
 
   const adminNavItems = [
     { href: '/admin', label: 'Admin Dashboard', icon: Shield },
     { href: '/admin/sprints', label: 'Manage Sprints', icon: Settings },
-    { href: '/admin/applications', label: 'Applications', icon: FileText },
+    { href: '/admin/events', label: 'Manage Events', icon: Calendar },
+    { href: '/admin/applications', label: 'Sprint Applications', icon: FileText },
+    { href: '/admin/event-registrations', label: 'Event Registrations', icon: Calendar },
     { href: '/admin/users', label: 'Users', icon: User },
   ];
 
