@@ -41,23 +41,29 @@ const WhyUs = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-24 lg:py-32 bg-gradient-subtle" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section className="py-24 lg:py-32 relative overflow-hidden" ref={ref}>
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-subtle" />
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-brand-green/5 rounded-full blur-[100px]" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-16"
           >
-            <span className="inline-block text-sm font-medium text-primary mb-4">
-              Why CodeWithTechno
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary mb-5 tracking-wide uppercase">
+              <span className="w-8 h-px bg-primary" />
+              Why Us
+              <span className="w-8 h-px bg-primary" />
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-display-sm font-bold mb-6">
               What Makes Us <span className="text-gradient">Different</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               We're not trying to be everything for everyone. We're focused on one thing: 
               helping serious designers and developers grow through execution.
             </p>
@@ -68,16 +74,16 @@ const WhyUs = () => {
             {reasons.map((reason, index) => (
               <motion.div
                 key={reason.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-all duration-300 group"
+                transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="p-6 lg:p-8 rounded-2xl bg-card border border-border/60 hover:border-primary/30 hover:shadow-card transition-all duration-500 group"
               >
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-accent mb-4 group-hover:bg-primary/10 transition-colors">
-                  <reason.icon className="h-5 w-5 text-primary" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent mb-5 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-500">
+                  <reason.icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{reason.title}</h3>
-                <p className="text-sm text-muted-foreground">{reason.description}</p>
+                <h3 className="font-display text-lg font-semibold mb-2">{reason.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{reason.description}</p>
               </motion.div>
             ))}
           </div>
