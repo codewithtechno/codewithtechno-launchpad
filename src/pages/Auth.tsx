@@ -10,11 +10,20 @@ import logo from '@/assets/logo.png';
 import { z } from 'zod';
 import { Loader2, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const signUpSchema = z.object({
   fullName: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
   email: z.string().email('Please enter a valid email'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
+  phone: z.string().min(10, 'Please enter a valid phone number').max(15, 'Phone number is too long'),
+  experienceLevel: z.string().min(1, 'Please select your experience level'),
 });
 
 const signInSchema = z.object({
@@ -28,6 +37,10 @@ const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [experienceLevel, setExperienceLevel] = useState('');
+  const [linkedinUrl, setLinkedinUrl] = useState('');
+  const [githubUrl, setGithubUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -50,7 +63,7 @@ const Auth = () => {
       if (isForgotPassword) {
         z.object({ email: z.string().email('Please enter a valid email') }).parse({ email });
       } else if (isSignUp) {
-        signUpSchema.parse({ fullName, email, password });
+        signUpSchema.parse({ fullName, email, password, phone, experienceLevel });
       } else {
         signInSchema.parse({ email, password });
       }
@@ -108,7 +121,7 @@ const Auth = () => {
 
     try {
       if (isSignUp) {
-        const { error } = await signUp(email, password, fullName);
+        const { error } = await signUp(email, password, fullName, phone, experienceLevel, linkedinUrl, githubUrl);
         if (error) {
           if (error.message.includes('already registered')) {
             toast({
@@ -264,7 +277,7 @@ const Auth = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md"
+        className="w-full max-w-md lg:max-w-lg"
       >
         <div className="bg-card rounded-2xl shadow-card p-8 border border-border">
           {/* Logo */}
@@ -285,21 +298,85 @@ const Auth = () => {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             {isSignUp && (
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name</Label>
-                <Input
-                  id="fullName"
-                  type="text"
-                  placeholder="John Doe"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  disabled={loading}
-                  className={errors.fullName ? 'border-destructive' : ''}
-                />
-                {errors.fullName && (
-                  <p className="text-sm text-destructive">{errors.fullName}</p>
-                )}
-              </div>
+              <>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="fullName">Full Name *</Label>
+                    <Input
+                      id="fullName"
+                      type="text"
+                      placeholder="John Doe"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      disabled={loading}
+                      className={errors.fullName ? 'border-destructive' : ''}
+                    />
+                    {errors.fullName && (
+                      <p className="text-sm text-destructive">{errors.fullName}</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+91 9876543210"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      disabled={loading}
+                      className={errors.phone ? 'border-destructive' : ''}
+                    />
+                    {errors.phone && (
+                      <p className="text-sm text-destructive">{errors.phone}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="experienceLevel">Experience Level *</Label>
+                  <Select value={experienceLevel} onValueChange={setExperienceLevel} disabled={loading}>
+                    <SelectTrigger className={errors.experienceLevel ? 'border-destructive' : ''}>
+                      <SelectValue placeholder="Select your experience level" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="beginner">Beginner (0-1 years)</SelectItem>
+                      <SelectItem value="intermediate">Intermediate (1-3 years)</SelectItem>
+                      <SelectItem value="advanced">Advanced (3-5 years)</SelectItem>
+                      <SelectItem value="expert">Expert (5+ years)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {errors.experienceLevel && (
+                    <p className="text-sm text-destructive">{errors.experienceLevel}</p>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="linkedinUrl">LinkedIn URL (Optional)</Label>
+                    <Input
+                      id="linkedinUrl"
+                      type="url"
+                      placeholder="linkedin.com/in/yourname"
+                      value={linkedinUrl}
+                      onChange={(e) => setLinkedinUrl(e.target.value)}
+                      disabled={loading}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="githubUrl">GitHub URL (Optional)</Label>
+                    <Input
+                      id="githubUrl"
+                      type="url"
+                      placeholder="github.com/yourname"
+                      value={githubUrl}
+                      onChange={(e) => setGithubUrl(e.target.value)}
+                      disabled={loading}
+                    />
+                  </div>
+                </div>
+              </>
             )}
 
             <div className="space-y-2">
