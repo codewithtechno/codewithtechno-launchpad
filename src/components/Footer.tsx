@@ -77,7 +77,7 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
                   </a>
                 </li>
                 <li>
-                  <span>India</span>
+                  <span>Meerut, Uttar Pradesh, India</span>
                 </li>
               </ul>
             </div>
