@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Programs", href: "#programs" },
   { name: "How It Works", href: "#how-it-works" },
   { name: "Vision", href: "#vision" },
+  { name: "Contact", href: "/contact", isRoute: true },
 ];
 
 const Navbar = () => {
@@ -53,14 +54,25 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group"
-              >
-                {link.name}
-                <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group"
+                >
+                  {link.name}
+                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                </Link>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group"
+                >
+                  {link.name}
+                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                </a>
+              )
             ))}
           </div>
 
@@ -125,18 +137,36 @@ const Navbar = () => {
             >
               <div className="py-6 space-y-2 border-t border-border/50">
                 {navLinks.map((link, index) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.href}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="flex items-center justify-between px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="font-medium">{link.name}</span>
-                    <ChevronRight className="h-4 w-4 opacity-50" />
-                  </motion.a>
+                  link.isRoute ? (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <Link
+                        to={link.href}
+                        className="flex items-center justify-between px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <span className="font-medium">{link.name}</span>
+                        <ChevronRight className="h-4 w-4 opacity-50" />
+                      </Link>
+                    </motion.div>
+                  ) : (
+                    <motion.a
+                      key={link.name}
+                      href={link.href}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="flex items-center justify-between px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <span className="font-medium">{link.name}</span>
+                      <ChevronRight className="h-4 w-4 opacity-50" />
+                    </motion.a>
+                  )
                 ))}
                 <div className="pt-4 space-y-3">
                   <div className="flex gap-2">
