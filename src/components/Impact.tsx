@@ -12,19 +12,19 @@ const stats = [
   },
   {
     icon: Zap,
-    value: "20+",
+    value: "10+",
     label: "Sprints Conducted",
     color: "secondary",
   },
   {
     icon: Users,
-    value: "500+",
+    value: "1000+",
     label: "Community Members",
     color: "primary",
   },
   {
     icon: FolderOpen,
-    value: "50+",
+    value: "10+",
     label: "Projects Built",
     color: "secondary",
   },
