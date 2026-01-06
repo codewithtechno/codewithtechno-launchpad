@@ -111,17 +111,17 @@ const Hero = () => {
             </p>
             <div className="inline-flex items-center gap-6 sm:gap-10 px-8 py-5 rounded-2xl bg-card/60 backdrop-blur-sm border border-border/50 shadow-card">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold font-display text-foreground">500+</div>
+                <div className="text-2xl sm:text-3xl font-bold font-display text-foreground">1000+</div>
                 <div className="text-xs sm:text-sm text-muted-foreground mt-1">Members</div>
               </div>
               <div className="w-px h-10 bg-border" />
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold font-display text-foreground">20+</div>
+                <div className="text-2xl sm:text-3xl font-bold font-display text-foreground">10+</div>
                 <div className="text-xs sm:text-sm text-muted-foreground mt-1">Sprints</div>
               </div>
               <div className="w-px h-10 bg-border" />
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold font-display text-foreground">50+</div>
+                <div className="text-2xl sm:text-3xl font-bold font-display text-foreground">10+</div>
                 <div className="text-xs sm:text-sm text-muted-foreground mt-1">Projects</div>
               </div>
             </div>
