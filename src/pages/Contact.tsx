@@ -117,7 +117,7 @@ const Contact = () => {
                         href="mailto:contact@codewithtechno.com"
                         className="text-muted-foreground hover:text-primary transition-colors"
                       >
-                        contact@codewithtechno.com
+                        contact@codewithtechno.in
                       </a>
                     </div>
                   </div>
@@ -132,7 +132,7 @@ const Contact = () => {
                         href="tel:+919876543210"
                         className="text-muted-foreground hover:text-primary transition-colors"
                       >
-                        +91 98765 43210
+                        +91 8532070669
                       </a>
                     </div>
                   </div>
@@ -144,7 +144,7 @@ const Contact = () => {
                     <div>
                       <h3 className="font-medium mb-1">Location</h3>
                       <p className="text-muted-foreground">
-                        India (Remote-first organization)
+                        Meerut, Uttar Pradesh, India.
                       </p>
                     </div>
                   </div>
