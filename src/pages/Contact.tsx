@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,6 +9,12 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { z } from "zod";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -16,6 +22,41 @@ const contactSchema = z.object({
   subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
   message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
 });
+
+const faqs = [
+  {
+    question: "Design Sprint kya hai?",
+    answer: "Design Sprint ek 5-day intensive program hai jahan aap real-world projects par kaam karte hain, industry mentors se guidance lete hain, aur practical skills develop karte hain. Ye beginners aur intermediate designers dono ke liye suitable hai."
+  },
+  {
+    question: "Development Sprint mein kya sikhaya jata hai?",
+    answer: "Development Sprint mein aap frontend aur backend technologies sikhte hain jaise React, Node.js, databases, aur deployment. Real projects par kaam karke portfolio-worthy work create karte hain."
+  },
+  {
+    question: "Sprints ki duration kitni hoti hai?",
+    answer: "Hamare sprints typically 7-14 days ke hote hain, depending on the program. Aap full-time ya part-time dono options choose kar sakte hain apni availability ke according."
+  },
+  {
+    question: "Kya beginners apply kar sakte hain?",
+    answer: "Haan! Hamare programs har level ke liye designed hain. Beginners ke liye foundational sprints hain aur experienced professionals ke liye advanced sprints available hain."
+  },
+  {
+    question: "Fees kitni hai aur payment options kya hain?",
+    answer: "Fees program ke according vary karti hain. Hum early bird discounts, installment options, aur scholarships bhi offer karte hain. Specific pricing ke liye individual sprint pages check karein."
+  },
+  {
+    question: "Certificate milta hai completion par?",
+    answer: "Haan, har sprint ke successful completion par aapko industry-recognized certificate milta hai jo aapke portfolio mein add ho sakta hai."
+  },
+  {
+    question: "Events online hain ya offline?",
+    answer: "Hum dono formats mein events organize karte hain. Kuch events purely online hain, kuch offline, aur kuch hybrid mode mein hote hain. Event details mein ye clearly mentioned hota hai."
+  },
+  {
+    question: "Application ke baad kitne din mein response milta hai?",
+    answer: "Typically 3-5 business days mein aapko email par response mil jata hai. Agar koi urgent query hai toh aap humse directly contact kar sakte hain."
+  }
+];
 
 const Contact = () => {
   const { toast } = useToast();
@@ -303,6 +344,44 @@ const Contact = () => {
               </form>
             </motion.div>
           </div>
+
+          {/* FAQ Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto mt-20"
+          >
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-4">
+                <HelpCircle className="w-8 h-8 text-primary" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+                Frequently Asked <span className="text-gradient">Questions</span>
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Find answers to common questions about our programs, events, and community.
+              </p>
+            </div>
+
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="bg-card rounded-2xl border border-border/50 px-6 shadow-sm data-[state=open]:shadow-md transition-shadow"
+                >
+                  <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary py-5 text-base">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-5 text-base leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
         </div>
       </main>
 
