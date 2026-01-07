@@ -25,36 +25,36 @@ const contactSchema = z.object({
 
 const faqs = [
   {
-    question: "Design Sprint kya hai?",
-    answer: "Design Sprint ek 5-day intensive program hai jahan aap real-world projects par kaam karte hain, industry mentors se guidance lete hain, aur practical skills develop karte hain. Ye beginners aur intermediate designers dono ke liye suitable hai."
+    question: "What is a Design Sprint?",
+    answer: "A Design Sprint is a 5-day intensive program where you work on real-world projects, receive guidance from industry mentors, and develop practical skills. It's suitable for both beginners and intermediate designers."
   },
   {
-    question: "Development Sprint mein kya sikhaya jata hai?",
-    answer: "Development Sprint mein aap frontend aur backend technologies sikhte hain jaise React, Node.js, databases, aur deployment. Real projects par kaam karke portfolio-worthy work create karte hain."
+    question: "What is taught in a Development Sprint?",
+    answer: "In a Development Sprint, you learn frontend and backend technologies such as React, Node.js, databases, and deployment. You work on real projects to create portfolio-worthy work."
   },
   {
-    question: "Sprints ki duration kitni hoti hai?",
-    answer: "Hamare sprints typically 7-14 days ke hote hain, depending on the program. Aap full-time ya part-time dono options choose kar sakte hain apni availability ke according."
+    question: "How long are the sprints?",
+    answer: "Our sprints typically last 7-14 days, depending on the program. You can choose between full-time or part-time options according to your availability."
   },
   {
-    question: "Kya beginners apply kar sakte hain?",
-    answer: "Haan! Hamare programs har level ke liye designed hain. Beginners ke liye foundational sprints hain aur experienced professionals ke liye advanced sprints available hain."
+    question: "Can beginners apply?",
+    answer: "Yes! Our programs are designed for all skill levels. We have foundational sprints for beginners and advanced sprints for experienced professionals."
   },
   {
-    question: "Fees kitni hai aur payment options kya hain?",
-    answer: "Fees program ke according vary karti hain. Hum early bird discounts, installment options, aur scholarships bhi offer karte hain. Specific pricing ke liye individual sprint pages check karein."
+    question: "What are the fees and payment options?",
+    answer: "Fees vary according to the program. We offer early bird discounts, installment options, and scholarships. Check individual sprint pages for specific pricing."
   },
   {
-    question: "Certificate milta hai completion par?",
-    answer: "Haan, har sprint ke successful completion par aapko industry-recognized certificate milta hai jo aapke portfolio mein add ho sakta hai."
+    question: "Do I receive a certificate upon completion?",
+    answer: "Yes, upon successful completion of each sprint, you receive an industry-recognized certificate that can be added to your portfolio."
   },
   {
-    question: "Events online hain ya offline?",
-    answer: "Hum dono formats mein events organize karte hain. Kuch events purely online hain, kuch offline, aur kuch hybrid mode mein hote hain. Event details mein ye clearly mentioned hota hai."
+    question: "Are events online or offline?",
+    answer: "We organize events in both formats. Some events are purely online, some offline, and some are in hybrid mode. This is clearly mentioned in the event details."
   },
   {
-    question: "Application ke baad kitne din mein response milta hai?",
-    answer: "Typically 3-5 business days mein aapko email par response mil jata hai. Agar koi urgent query hai toh aap humse directly contact kar sakte hain."
+    question: "How long does it take to receive a response after applying?",
+    answer: "Typically, you will receive a response via email within 3-5 business days. If you have an urgent query, you can contact us directly."
   }
 ];
 
