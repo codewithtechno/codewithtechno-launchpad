@@ -12,6 +12,26 @@ import { Badge } from '@/components/ui/badge';
 import { Loader2, Calendar, Clock, MapPin, Wifi, Users, ArrowLeft, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
+
+const loadRazorpayScript = (): Promise<boolean> => {
+  return new Promise((resolve) => {
+    if (window.Razorpay) {
+      resolve(true);
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
+
 const EventDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
@@ -51,14 +71,93 @@ const EventDetails = () => {
     }
   }, [user, id]);
 
+  const handlePaidRegistration = async () => {
+    if (!user || !id) return;
+
+    const scriptLoaded = await loadRazorpayScript();
+    if (!scriptLoaded) {
+      toast({ title: 'Error', description: 'Payment gateway failed to load', variant: 'destructive' });
+      return;
+    }
+
+    setRegistering(true);
+
+    try {
+      const { data: sessionData } = await supabase.auth.getSession();
+      const token = sessionData?.session?.access_token;
+
+      const response = await supabase.functions.invoke('create-razorpay-order', {
+        body: { event_id: id },
+      });
+
+      if (response.error || !response.data) {
+        throw new Error(response.error?.message || 'Failed to create order');
+      }
+
+      const { order_id, amount, currency, key_id, prefill } = response.data;
+
+      const options = {
+        key: key_id,
+        amount,
+        currency,
+        name: event?.title || 'Event Registration',
+        description: `Registration for ${event?.title}`,
+        order_id,
+        handler: async (response: any) => {
+          try {
+            const verifyRes = await supabase.functions.invoke('verify-razorpay-payment', {
+              body: {
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                event_id: id,
+              },
+            });
+
+            if (verifyRes.error) {
+              throw new Error('Payment verification failed');
+            }
+
+            toast({ title: 'Success! 🎉', description: 'Payment successful! You are registered.' });
+            if (user) fetchUserRegistration(user.id);
+          } catch (err) {
+            toast({ title: 'Error', description: 'Payment verification failed. Contact support.', variant: 'destructive' });
+          }
+        },
+        prefill,
+        theme: { color: '#6366f1' },
+        modal: {
+          ondismiss: () => {
+            setRegistering(false);
+            toast({ title: 'Cancelled', description: 'Payment was cancelled' });
+          },
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+      setRegistering(false);
+    } catch (err: any) {
+      console.error('Payment error:', err);
+      toast({ title: 'Error', description: err.message || 'Payment failed', variant: 'destructive' });
+      setRegistering(false);
+    }
+  };
+
   const handleRegister = async () => {
     if (!user) {
       navigate('/auth', { state: { from: `/events/${id}` } });
       return;
     }
-
     if (!id) return;
 
+    // Paid event -> Razorpay flow
+    if (event?.is_paid) {
+      await handlePaidRegistration();
+      return;
+    }
+
+    // Free event -> direct registration
     setRegistering(true);
     await registerForEvent(user.id, { event_id: id });
     setRegistering(false);
@@ -81,22 +180,16 @@ const EventDetails = () => {
     );
   }
 
-  if (!event) {
-    return null;
-  }
+  if (!event) return null;
 
-  const isRegistered = !!userRegistration;
+  const isRegistered = !!userRegistration && userRegistration.status !== 'pending_payment';
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <Link to="/events" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Events
@@ -107,14 +200,9 @@ const EventDetails = () => {
               <div className="lg:col-span-2 space-y-6">
                 {event.cover_image_url && (
                   <div className="aspect-video w-full rounded-xl overflow-hidden">
-                    <img
-                      src={event.cover_image_url}
-                      alt={event.title}
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={event.cover_image_url} alt={event.title} className="w-full h-full object-cover" />
                   </div>
                 )}
-
                 <div>
                   <div className="flex items-center gap-2 mb-4 flex-wrap">
                     <Badge variant={event.event_type === 'online' ? 'default' : 'secondary'} className="text-sm">
@@ -122,23 +210,15 @@ const EventDetails = () => {
                       {event.event_type === 'online' ? 'Online Event' : 'Offline Event'}
                     </Badge>
                     {event.is_paid ? (
-                      <Badge variant="outline" className="text-green-500 border-green-500 text-sm">
-                        Paid Event
-                      </Badge>
+                      <Badge variant="outline" className="text-green-500 border-green-500 text-sm">Paid Event</Badge>
                     ) : (
-                      <Badge variant="outline" className="text-primary border-primary text-sm">
-                        Free Event
-                      </Badge>
+                      <Badge variant="outline" className="text-primary border-primary text-sm">Free Event</Badge>
                     )}
                   </div>
-
                   <h1 className="text-3xl md:text-4xl font-bold mb-4">{event.title}</h1>
-
                   {event.description && (
                     <div className="prose prose-neutral dark:prose-invert max-w-none">
-                      <p className="text-lg text-muted-foreground whitespace-pre-wrap">
-                        {event.description}
-                      </p>
+                      <p className="text-lg text-muted-foreground whitespace-pre-wrap">{event.description}</p>
                     </div>
                   )}
                 </div>
@@ -171,11 +251,7 @@ const EventDetails = () => {
 
                     {event.location && (
                       <div className="flex items-center gap-3">
-                        {event.event_type === 'online' ? (
-                          <Wifi className="h-5 w-5 text-primary" />
-                        ) : (
-                          <MapPin className="h-5 w-5 text-primary" />
-                        )}
+                        {event.event_type === 'online' ? <Wifi className="h-5 w-5 text-primary" /> : <MapPin className="h-5 w-5 text-primary" />}
                         <div>
                           <p className="font-medium">{event.event_type === 'online' ? 'Platform' : 'Location'}</p>
                           <p className="text-sm text-muted-foreground">{event.location}</p>
@@ -210,38 +286,24 @@ const EventDetails = () => {
                         <div className="text-center p-4 bg-primary/10 rounded-lg">
                           <CheckCircle className="h-8 w-8 text-primary mx-auto mb-2" />
                           <p className="font-semibold text-primary">You're Registered!</p>
-                          <p className="text-sm text-muted-foreground mt-1">
-                            Status: {userRegistration.status}
-                          </p>
+                          <p className="text-sm text-muted-foreground mt-1">Status: {userRegistration!.status}</p>
                         </div>
                       ) : event.is_accepting_registrations ? (
-                        <Button
-                          className="w-full"
-                          size="lg"
-                          onClick={handleRegister}
-                          disabled={registering}
-                        >
+                        <Button className="w-full" size="lg" onClick={handleRegister} disabled={registering}>
                           {registering ? (
-                            <>
-                              <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                              Registering...
-                            </>
+                            <><Loader2 className="h-4 w-4 animate-spin mr-2" />Processing...</>
                           ) : event.is_paid ? (
-                            `Register - ₹${event.early_bird_price || event.ticket_price}`
+                            `Pay & Register - ₹${event.early_bird_price || event.ticket_price}`
                           ) : (
                             'Register for Free'
                           )}
                         </Button>
                       ) : (
-                        <Button className="w-full" size="lg" disabled>
-                          Registration Closed
-                        </Button>
+                        <Button className="w-full" size="lg" disabled>Registration Closed</Button>
                       )}
 
                       {!user && event.is_accepting_registrations && (
-                        <p className="text-xs text-center text-muted-foreground mt-2">
-                          You'll need to sign in to register
-                        </p>
+                        <p className="text-xs text-center text-muted-foreground mt-2">You'll need to sign in to register</p>
                       )}
                     </div>
                   </CardContent>
@@ -251,7 +313,6 @@ const EventDetails = () => {
           </motion.div>
         </div>
       </main>
-
       <Footer />
     </div>
   );
