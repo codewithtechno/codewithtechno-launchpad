@@ -96,24 +96,10 @@ const HowItWorks = () => {
               ))}
             </div>
           </div>
-
-          {/* Differentiator */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-16 p-8 lg:p-10 rounded-2xl bg-card border border-primary/20 text-center shadow-sm"
-          >
-            <p className="text-lg font-semibold mb-2">
-              This is <span className="text-primary">NOT</span> a webinar or seminar series.
-            </p>
-            <p className="text-muted-foreground">
-              Every program is designed for active participation, real deadlines, and tangible outcomes.
-            </p>
-          </motion.div>
         </div>
       </div>
     </section>
+
   );
 };
 

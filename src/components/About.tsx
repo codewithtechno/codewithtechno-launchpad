@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Target, Zap, Users, ArrowUpRight } from "lucide-react";
+import logo from "@/assets/logo.png";
+
 
 const About = () => {
   const ref = useRef(null);
@@ -94,10 +96,11 @@ const About = () => {
             >
               <div className="aspect-square rounded-3xl bg-card border border-border/60 p-10 lg:p-14 shadow-card hover:shadow-card-hover transition-all duration-500 group">
                 <div className="h-full flex flex-col justify-center items-center text-center">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-primary flex items-center justify-center mb-8 shadow-glow-green group-hover:scale-105 transition-transform duration-500">
-                    <span className="text-2xl font-bold font-display text-primary-foreground">CWT</span>
+                  <div className="w-24 h-24 rounded-2xl bg-card border border-border/60 flex items-center justify-center mb-8 shadow-sm group-hover:scale-105 transition-transform duration-500 p-3">
+                    <img src={logo} alt="CodeWithTechno" className="w-full h-full object-contain" />
                   </div>
                   <h3 className="font-display text-2xl font-bold mb-4">Our Mission</h3>
+
                   <p className="text-muted-foreground leading-relaxed">
                     To create a trusted national-level community where designers and 
                     developers grow through execution, not just events.
