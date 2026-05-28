@@ -53,9 +53,10 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
               <ul className="space-y-3 text-muted-foreground">
                 {[
                   { name: "About", href: "#about" },
-                  { name: "Programs", href: "#programs" },
-                  { name: "How It Works", href: "#how-it-works" },
-                  { name: "Vision 2026", href: "#vision" },
+                  { name: "What We Do", href: "#what-we-do" },
+                  { name: "Partners", href: "#partners" },
+                  { name: "FAQ", href: "#faq" },
+                  { name: "Contact", href: "#contact" },
                 ].map((link) => (
                   <li key={link.name}>
                     <a href={link.href} className="inline-flex items-center gap-1 hover:text-foreground transition-colors group">
