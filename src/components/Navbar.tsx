@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, User, LogOut, ChevronRight } from "lucide-react";
+import { Menu, X, User, LogOut, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import logo from "@/assets/logo.png";
 
+const COMMUDLE_URL = "https://www.commudle.com/communities/codewithtechno";
+
 const navLinks = [
   { name: "About", href: "#about" },
-  { name: "Programs", href: "#programs" },
-  { name: "How It Works", href: "#how-it-works" },
-  { name: "Vision", href: "#vision" },
-  { name: "Contact", href: "/contact", isRoute: true },
+  { name: "What We Do", href: "#showcase" },
+  { name: "Partners", href: "#partners" },
+  { name: "FAQ", href: "#faq" },
+  { name: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -21,9 +23,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -43,7 +43,6 @@ const Navbar = () => {
     >
       <nav className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
           <a href="/" className="flex items-center gap-3 group">
             <img src={logo} alt="CodeWithTechno" className="h-9 w-auto transition-transform duration-300 group-hover:scale-105" />
             <span className="font-display font-semibold text-lg hidden sm:block">
@@ -51,44 +50,27 @@ const Navbar = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
-              link.isRoute ? (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group"
-                >
-                  {link.name}
-                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
-                </Link>
-              ) : (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group"
-                >
-                  {link.name}
-                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
-                </a>
-              )
+              <a
+                key={link.name}
+                href={link.href}
+                className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium group"
+              >
+                {link.name}
+                <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+              </a>
             ))}
           </div>
 
-          {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-2">
-            <Link to="/sprints">
-              <Button variant="ghost" size="sm" className="font-medium">
-                Sprints
+            <a href={COMMUDLE_URL} target="_blank" rel="noopener noreferrer">
+              <Button variant="default" size="sm" className="shadow-glow-green font-medium">
+                Join CodeWithTechno
+                <ExternalLink className="h-4 w-4" />
               </Button>
-            </Link>
-            <Link to="/events">
-              <Button variant="ghost" size="sm" className="font-medium">
-                Events
-              </Button>
-            </Link>
-            {user ? (
+            </a>
+            {user && (
               <>
                 <Link to={isAdmin ? "/admin" : "/dashboard"}>
                   <Button variant="ghost" size="sm" className="font-medium">
@@ -101,31 +83,18 @@ const Navbar = () => {
                   Sign Out
                 </Button>
               </>
-            ) : (
-              <Link to="/auth">
-                <Button variant="default" size="sm" className="shadow-glow-green font-medium">
-                  Get Started
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </Link>
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2.5 -mr-2 rounded-xl hover:bg-accent transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -137,51 +106,27 @@ const Navbar = () => {
             >
               <div className="py-6 space-y-2 border-t border-border/50">
                 {navLinks.map((link, index) => (
-                  link.isRoute ? (
-                    <motion.div
-                      key={link.name}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <Link
-                        to={link.href}
-                        className="flex items-center justify-between px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <span className="font-medium">{link.name}</span>
-                        <ChevronRight className="h-4 w-4 opacity-50" />
-                      </Link>
-                    </motion.div>
-                  ) : (
-                    <motion.a
-                      key={link.name}
-                      href={link.href}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className="flex items-center justify-between px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <span className="font-medium">{link.name}</span>
-                      <ChevronRight className="h-4 w-4 opacity-50" />
-                    </motion.a>
-                  )
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="flex items-center justify-between px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="font-medium">{link.name}</span>
+                    <ChevronRight className="h-4 w-4 opacity-50" />
+                  </motion.a>
                 ))}
                 <div className="pt-4 space-y-3">
-                  <div className="flex gap-2">
-                    <Link to="/sprints" onClick={() => setIsMobileMenuOpen(false)} className="flex-1">
-                      <Button variant="outline" className="w-full">
-                        Sprints
-                      </Button>
-                    </Link>
-                    <Link to="/events" onClick={() => setIsMobileMenuOpen(false)} className="flex-1">
-                      <Button variant="outline" className="w-full">
-                        Events
-                      </Button>
-                    </Link>
-                  </div>
-                  {user ? (
+                  <a href={COMMUDLE_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button variant="default" className="w-full shadow-glow-green">
+                      Join CodeWithTechno
+                      <ExternalLink className="h-4 w-4" />
+                    </Button>
+                  </a>
+                  {user && (
                     <>
                       <Link to={isAdmin ? "/admin" : "/dashboard"} onClick={() => setIsMobileMenuOpen(false)}>
                         <Button variant="ghost" className="w-full justify-start">
@@ -194,13 +139,6 @@ const Navbar = () => {
                         Sign Out
                       </Button>
                     </>
-                  ) : (
-                    <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button variant="default" className="w-full shadow-glow-green">
-                        Get Started
-                        <ChevronRight className="h-4 w-4" />
-                      </Button>
-                    </Link>
                   )}
                 </div>
               </div>
