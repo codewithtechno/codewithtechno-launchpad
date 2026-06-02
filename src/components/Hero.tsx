@@ -39,13 +39,24 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-10"
+            className="mb-10 flex justify-center"
           >
-            <img
-              src={logo}
-              alt="CodeWithTechno"
-              className="h-16 lg:h-20 w-auto mx-auto animate-float"
-            />
+            <div className="relative p-[3px] rounded-3xl overflow-hidden animate-float shadow-xl shadow-primary/20">
+              <div
+                className="absolute inset-0 rounded-3xl"
+                style={{
+                  background: "conic-gradient(from 0deg, hsl(var(--brand-green)), hsl(var(--brand-blue)), hsl(var(--brand-green-light)), hsl(var(--brand-blue-light)), hsl(var(--brand-green)))",
+                  animation: "spin 6s linear infinite",
+                }}
+              />
+              <div className="relative rounded-[1.30rem] bg-background/95 backdrop-blur-sm p-5 lg:p-6">
+                <img
+                  src={logo}
+                  alt="CodeWithTechno"
+                  className="h-16 lg:h-20 w-auto"
+                />
+              </div>
+            </div>
           </motion.div>
 
           <motion.h1

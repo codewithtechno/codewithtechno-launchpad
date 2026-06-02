@@ -36,27 +36,20 @@ const TrustedPartners = () => {
   const loop = [...partners, ...partners];
 
   return (
-    <section id="partners" className="py-24 lg:py-32 relative overflow-hidden" ref={ref}>
+    <section id="partners" className="py-16 lg:py-20 relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0 bg-gradient-subtle" />
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-14"
+          className="text-center mb-10"
         >
-          <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary mb-5 tracking-wide uppercase">
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary tracking-wide uppercase">
             <span className="w-8 h-px bg-primary" />
             Trusted Partners
             <span className="w-8 h-px bg-primary" />
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-display-sm font-bold mb-6">
-            Backed by <span className="text-gradient">Leading Communities</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            We collaborate with the best in tech and design to deliver exceptional
-            experiences for our community.
-          </p>
         </motion.div>
 
         <div className="relative">
