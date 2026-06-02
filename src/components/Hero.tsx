@@ -35,51 +35,6 @@ const Hero = () => {
             </span>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-10 flex justify-center"
-          >
-            <div className="relative w-40 h-40 lg:w-48 lg:h-48 mx-auto flex items-center justify-center">
-              {/* Animated radial glow halo */}
-              <div
-                className="absolute inset-0 rounded-full blur-2xl opacity-70"
-                style={{
-                  background: "radial-gradient(circle, hsl(var(--brand-green) / 0.55), hsl(var(--brand-blue) / 0.45) 50%, transparent 75%)",
-                  animation: "pulse-soft 3.5s ease-in-out infinite",
-                }}
-              />
-              {/* Rotating conic ring */}
-              <div
-                className="absolute inset-2 rounded-full opacity-80"
-                style={{
-                  background: "conic-gradient(from 0deg, transparent 0deg, hsl(var(--brand-green)) 90deg, transparent 180deg, hsl(var(--brand-blue)) 270deg, transparent 360deg)",
-                  animation: "spin 8s linear infinite",
-                  mask: "radial-gradient(circle, transparent 58%, black 60%, black 70%, transparent 72%)",
-                  WebkitMask: "radial-gradient(circle, transparent 58%, black 60%, black 70%, transparent 72%)",
-                }}
-              />
-              {/* Counter-rotating outer dotted ring */}
-              <div
-                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/25"
-                style={{ animation: "spin 20s linear infinite reverse" }}
-              />
-              {/* Orbiting accent dots */}
-              <div className="absolute inset-0" style={{ animation: "spin 12s linear infinite" }}>
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-2.5 h-2.5 rounded-full bg-brand-green shadow-[0_0_12px_hsl(var(--brand-green))]" />
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 w-2 h-2 rounded-full bg-brand-blue shadow-[0_0_12px_hsl(var(--brand-blue))]" />
-              </div>
-              {/* Logo center */}
-              <div className="relative z-10 animate-float">
-                <img
-                  src={logo}
-                  alt="CodeWithTechno"
-                  className="h-20 lg:h-24 w-auto drop-shadow-[0_8px_24px_hsl(var(--brand-blue)/0.35)]"
-                />
-              </div>
-            </div>
-          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
