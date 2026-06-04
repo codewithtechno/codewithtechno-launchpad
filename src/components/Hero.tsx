@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Calendar, Sparkles, ShieldCheck, Star } from "lucide-react";
-import heroImage from "@/assets/hero-community.jpg.asset.json";
+const heroImage = { url: "/assets/hero-community.jpg" };
 
 const COMMUDLE_URL = "https://www.commudle.com/communities/codewithtechno";
 
