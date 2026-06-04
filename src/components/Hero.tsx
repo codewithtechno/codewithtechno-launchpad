@@ -128,9 +128,9 @@ const Hero = () => {
             {/* Stats grid */}
             <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-5 border-t border-border/60">
               {[
-                { icon: Users, value: "500+", label: "Active Members" },
-                { icon: Calendar, value: "40+", label: "Events Hosted" },
-                { icon: Sparkles, value: "20+", label: "Sprints Shipped" },
+                { icon: Users, value: "1K+", label: "Active Members" },
+                { icon: Calendar, value: "15+", label: "Events Hosted" },
+                { icon: Sparkles, value: "20+", label: "Industry Experts" },
               ].map((s) => (
                 <div key={s.label} className="flex flex-col">
                   <div className="flex items-center gap-2 mb-1">
@@ -146,9 +146,9 @@ const Hero = () => {
 
             {/* Trust footnote */}
             <div className="flex items-center gap-2 mt-5 pt-4 border-t border-border/60">
-              <ShieldCheck className="h-4 w-4 text-brand-green" />
+              <ShieldCheck className="h-4 w-4 text-brand-green flex-shrink-0" />
               <span className="text-xs sm:text-sm text-muted-foreground">
-                Backed by GDG, Commudle, Unstop & leading tech communities
+                Backed by PW IOI Noida, Commudle, DesignLand, GDG Chapters & leading tech communities
               </span>
             </div>
           </motion.div>
