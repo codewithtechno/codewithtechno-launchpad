@@ -7,17 +7,18 @@ const COMMUDLE_URL = "https://www.commudle.com/communities/codewithtechno";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-center pt-24 pb-12 sm:pb-16 overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
           src={heroImage.url}
           alt="CodeWithTechno community meetup"
-          className="w-full h-full object-cover object-center scale-105"
+          loading="eager"
+          className="w-full h-full object-cover object-center"
         />
-        {/* Layered overlays for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+        {/* Layered overlays - lighter on mobile so the image shows clearly */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/55 to-background/85 sm:bg-gradient-to-r sm:from-background sm:via-background/85 sm:to-background/30" />
+        <div className="absolute inset-0 hidden sm:block bg-gradient-to-t from-background via-background/40 to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_hsl(var(--brand-green)/0.15),_transparent_60%)]" />
       </div>
 
@@ -27,7 +28,7 @@ const Hero = () => {
         backgroundSize: '64px 64px'
       }} />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-3xl">
           {/* Live badge */}
           <motion.div
@@ -50,7 +51,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight mb-6"
+            className="font-display text-[2rem] xs:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight mb-5 sm:mb-6"
           >
             Where Designers <br className="hidden sm:block" />
             & Developers <span className="text-gradient-animated">Build Together</span>
