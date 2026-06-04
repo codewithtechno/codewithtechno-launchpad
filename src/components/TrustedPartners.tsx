@@ -4,7 +4,7 @@ import pwioiLogo from "@/assets/partners/pwioi.png";
 import gdgLogo from "@/assets/partners/gdg.png";
 import commudleLogo from "@/assets/partners/commudle.png";
 import unstopLogo from "@/assets/partners/unstop.png";
-import designlandLogo from "@/assets/partners/designland.jpg";
+import designlandLogo from "@/assets/partners/designland.png";
 
 const partners = [
   { name: "PW IOI", logo: pwioiLogo, href: "https://www.pwioi.com" },
