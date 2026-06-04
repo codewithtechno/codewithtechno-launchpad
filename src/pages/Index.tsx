@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import EventShowcase from "@/components/EventShowcase";
 import HowItWorks from "@/components/HowItWorks";
+import EventGlimpses from "@/components/EventGlimpses";
 import TrustedPartners from "@/components/TrustedPartners";
 import FAQ from "@/components/FAQ";
 import ContactSection from "@/components/ContactSection";
