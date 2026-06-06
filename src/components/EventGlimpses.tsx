@@ -1,21 +1,50 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Camera, Sparkles } from "lucide-react";
-import event1 from "@/assets/event-1.jpg";
-import event2 from "@/assets/event-2.jpg";
-import event3 from "@/assets/event-3.jpg";
-import event4 from "@/assets/event-4.jpg";
-import event5 from "@/assets/event-5.jpg";
-import event6 from "@/assets/event-6.jpg";
+import g1 from "@/assets/glimpses/g1.jpg.asset.json";
+import g2 from "@/assets/glimpses/g2.jpg.asset.json";
+import g3 from "@/assets/glimpses/g3.jpg.asset.json";
+import g4 from "@/assets/glimpses/g4.jpg.asset.json";
+import g5 from "@/assets/glimpses/g5.jpg.asset.json";
+import g6 from "@/assets/glimpses/g6.jpg.asset.json";
+import g7 from "@/assets/glimpses/g7.jpg.asset.json";
+import g8 from "@/assets/glimpses/g8.jpg.asset.json";
+import g9 from "@/assets/glimpses/g9.jpg.asset.json";
+import g10 from "@/assets/glimpses/g10.jpg.asset.json";
 
-const glimpses = [
-  { img: event1, title: "Developer Meetup", location: "Delhi NCR" },
-  { img: event2, title: "Build Sprint", location: "Online" },
-  { img: event3, title: "Design Workshop", location: "Gurugram" },
-  { img: event4, title: "Tech Talks", location: "Bengaluru" },
-  { img: event5, title: "Networking Night", location: "Mumbai" },
-  { img: event6, title: "Demo Day", location: "Hybrid" },
-];
+const colA = [g1, g3, g5, g7, g9];
+const colB = [g2, g4, g6, g8, g10];
+
+const ImageCard = ({ src, alt }: { src: string; alt: string }) => (
+  <div className="group relative overflow-hidden rounded-xl bg-card border border-border/60 shadow-card cursor-pointer transition-all duration-500 hover:shadow-card-hover hover:z-20">
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      className="w-full h-auto object-cover transition-transform duration-700 ease-premium group-hover:scale-[1.18]"
+    />
+  </div>
+);
+
+const Column = ({
+  items,
+  direction,
+}: {
+  items: { url: string }[];
+  direction: "up" | "down";
+}) => {
+  const loop = [...items, ...items];
+  const animClass = direction === "up" ? "animate-marquee-y" : "animate-marquee-y-reverse";
+  return (
+    <div className="relative h-[560px] sm:h-[640px] lg:h-[720px] overflow-hidden rounded-2xl [mask-image:linear-gradient(to_bottom,transparent,black_8%,black_92%,transparent)]">
+      <div className={`flex flex-col gap-2 sm:gap-2.5 ${animClass} group-hover/col:[animation-play-state:paused]`}>
+        {loop.map((img, i) => (
+          <ImageCard key={i} src={img.url} alt={`Past event ${(i % items.length) + 1}`} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const EventGlimpses = () => {
   const ref = useRef(null);
@@ -60,41 +89,20 @@ const EventGlimpses = () => {
               </div>
             </motion.div>
 
-            {/* Right: Animated cards stack */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-5">
-              {glimpses.map((g, i) => (
-                <motion.div
-                  key={g.title}
-                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                  animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.15 + i * 0.1,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  whileHover={{ y: -6 }}
-                  className={`group relative overflow-hidden rounded-2xl bg-card border border-border/60 shadow-card hover:shadow-card-hover transition-all duration-500 ${
-                    i % 2 === 0 ? "lg:translate-y-6" : ""
-                  }`}
-                >
-                  <div className="aspect-[4/5] overflow-hidden">
-                    <img
-                      src={g.img}
-                      alt={g.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="font-display text-sm sm:text-base font-bold text-white leading-tight mb-1">
-                      {g.title}
-                    </h3>
-                    <p className="text-xs text-white/70 font-medium">{g.location}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            {/* Right: Two vertical scrolling columns */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-2 gap-2 sm:gap-2.5"
+            >
+              <div className="group/col">
+                <Column items={colA} direction="up" />
+              </div>
+              <div className="group/col">
+                <Column items={colB} direction="down" />
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

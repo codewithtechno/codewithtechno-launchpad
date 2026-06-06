@@ -134,6 +134,14 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "marquee-y": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-50%)" },
+        },
+        "marquee-y-reverse": {
+          "0%": { transform: "translateY(-50%)" },
+          "100%": { transform: "translateY(0)" },
+        },
 
       },
       animation: {
@@ -147,6 +155,8 @@ export default {
         "shimmer": "shimmer 2s linear infinite",
         "slide-up": "slide-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         "marquee": "marquee 35s linear infinite",
+        "marquee-y": "marquee-y 30s linear infinite",
+        "marquee-y-reverse": "marquee-y-reverse 30s linear infinite",
 
       },
       transitionTimingFunction: {
