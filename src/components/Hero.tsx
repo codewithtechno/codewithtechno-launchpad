@@ -51,7 +51,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-[2rem] xs:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight mb-5 sm:mb-6"
+            className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight mb-5 sm:mb-6"
           >
             Where Designers <br className="hidden sm:block" />
             & Developers <span className="text-gradient-animated">Build Together</span>
@@ -126,20 +126,20 @@ const Hero = () => {
             </div>
 
             {/* Stats grid */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-5 border-t border-border/60">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-5 border-t border-border/60">
               {[
-                { icon: Users, value: "1K+", label: "Active Members" },
-                { icon: Calendar, value: "15+", label: "Events Hosted" },
-                { icon: Sparkles, value: "20+", label: "Industry Experts" },
+                { icon: Users, value: "1K+", label: "Members" },
+                { icon: Calendar, value: "15+", label: "Events" },
+                { icon: Sparkles, value: "20+", label: "Experts" },
               ].map((s) => (
-                <div key={s.label} className="flex flex-col">
-                  <div className="flex items-center gap-2 mb-1">
-                    <s.icon className="h-4 w-4 text-primary" />
-                    <span className="font-display text-2xl sm:text-3xl font-bold text-foreground">
+                <div key={s.label} className="flex flex-col min-w-0">
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
+                    <s.icon className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span className="font-display text-xl sm:text-3xl font-bold text-foreground">
                       {s.value}
                     </span>
                   </div>
-                  <span className="text-xs sm:text-sm text-muted-foreground">{s.label}</span>
+                  <span className="text-xs sm:text-sm text-muted-foreground truncate">{s.label}</span>
                 </div>
               ))}
             </div>

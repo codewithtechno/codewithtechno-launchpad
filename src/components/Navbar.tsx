@@ -43,9 +43,9 @@ const Navbar = () => {
     >
       <nav className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <a href="/" className="flex items-center gap-3 group">
-            <img src={logo} alt="CodeWithTechno" className="h-9 w-auto transition-transform duration-300 group-hover:scale-105" />
-            <span className="font-display font-semibold text-lg hidden sm:block">
+          <a href="/" className="flex items-center gap-2 sm:gap-3 group min-w-0">
+            <img src={logo} alt="CodeWithTechno" className="h-8 sm:h-9 w-auto flex-shrink-0 transition-transform duration-300 group-hover:scale-105" />
+            <span className="font-display font-semibold text-base sm:text-lg truncate">
               CodeWith<span className="text-gradient">Techno</span>
             </span>
           </a>
