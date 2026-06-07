@@ -1,16 +1,17 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Camera, Sparkles } from "lucide-react";
-import g1 from "@/assets/glimpses/g1.jpg.asset.json";
-import g2 from "@/assets/glimpses/g2.jpg.asset.json";
-import g3 from "@/assets/glimpses/g3.jpg.asset.json";
-import g4 from "@/assets/glimpses/g4.jpg.asset.json";
-import g5 from "@/assets/glimpses/g5.jpg.asset.json";
-import g6 from "@/assets/glimpses/g6.jpg.asset.json";
-import g7 from "@/assets/glimpses/g7.jpg.asset.json";
-import g8 from "@/assets/glimpses/g8.jpg.asset.json";
-import g9 from "@/assets/glimpses/g9.jpg.asset.json";
-import g10 from "@/assets/glimpses/g10.jpg.asset.json";
+
+const g1 = { url: "/assets/glimpses/g1.jpg" };
+const g2 = { url: "/assets/glimpses/g2.jpg" };
+const g3 = { url: "/assets/glimpses/g3.jpg" };
+const g4 = { url: "/assets/glimpses/g4.jpg" };
+const g5 = { url: "/assets/glimpses/g5.jpg" };
+const g6 = { url: "/assets/glimpses/g6.jpg" };
+const g7 = { url: "/assets/glimpses/g7.jpg" };
+const g8 = { url: "/assets/glimpses/g8.jpg" };
+const g9 = { url: "/assets/glimpses/g9.jpg" };
+const g10 = { url: "/assets/glimpses/g10.jpg" };
 
 const colA = [g1, g3, g5, g7, g9];
 const colB = [g2, g4, g6, g8, g10];
