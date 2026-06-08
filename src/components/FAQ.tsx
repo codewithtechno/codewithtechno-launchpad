@@ -14,32 +14,16 @@ const faqs = [
     a: "CodeWithTechno is an execution-first community for designers and developers. We run structured sprints, workshops, and meetups that turn learning into real shipped work.",
   },
   {
-    q: "How does the community work?",
-    a: "Members join through Commudle, participate in cohort-based programs, collaborate on real projects, and grow through mentorship, peer reviews, and showcase events.",
+    q: "How can I join?",
+    a: "Click 'Join CodeWithTechno' anywhere on this site. You'll be taken to our Commudle page where you can sign up and instantly access upcoming events and discussions.",
   },
   {
     q: "What kind of events are organized?",
     a: "We host hackathons, design sprints, dev workshops, fireside chats with industry experts, demo days, and informal networking meetups — both online and offline.",
   },
   {
-    q: "How can developers and designers join?",
-    a: "Click 'Join CodeWithTechno' anywhere on this site. You'll be taken to our Commudle page where you can sign up and instantly access upcoming events and discussions.",
-  },
-  {
-    q: "What networking opportunities are available?",
-    a: "From curated meetups and partner events to private Discord channels and mentor connects, you'll meet builders, founders, designers, and engineers across India.",
-  },
-  {
     q: "What are the benefits of joining?",
     a: "Real projects in your portfolio, accountability cohorts, mentorship from senior practitioners, partner perks, and early access to job and collaboration opportunities.",
-  },
-  {
-    q: "Do you organize meetups and workshops?",
-    a: "Yes — regularly. Hands-on workshops cover topics like React, design systems, AI tooling, product thinking, and more. Meetups happen in NCR, Bengaluru, Mumbai, and online.",
-  },
-  {
-    q: "Can I collaborate with the community on projects?",
-    a: "Absolutely. We actively encourage cross-team builds, open-source contributions, and partner collaborations with communities like GDG, Commudle, Unstop, and others.",
   },
 ];
 
