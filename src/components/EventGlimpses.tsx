@@ -2,19 +2,19 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Camera, Sparkles } from "lucide-react";
 
-import g1 from "@/assets/glimpses/g1.jpg.asset.json";
-import g2 from "@/assets/glimpses/g2.jpg.asset.json";
-import g3 from "@/assets/glimpses/g3.jpg.asset.json";
-import g4 from "@/assets/glimpses/g4.jpg.asset.json";
-import g5 from "@/assets/glimpses/g5.jpg.asset.json";
-import g6 from "@/assets/glimpses/g6.jpg.asset.json";
-import g7 from "@/assets/glimpses/g7.jpg.asset.json";
-import g8 from "@/assets/glimpses/g8.jpg.asset.json";
-import g9 from "@/assets/glimpses/g9.jpg.asset.json";
-import g10 from "@/assets/glimpses/g10.jpg.asset.json";
+import g1 from "@/assets/glimpses/g1.jpg";
+import g2 from "@/assets/glimpses/g2.jpg";
+import g3 from "@/assets/glimpses/g3.jpg";
+import g4 from "@/assets/glimpses/g4.jpg";
+import g5 from "@/assets/glimpses/g5.jpg";
+import g6 from "@/assets/glimpses/g6.jpg";
+import g7 from "@/assets/glimpses/g7.jpg";
+import g8 from "@/assets/glimpses/g8.jpg";
+import g9 from "@/assets/glimpses/g9.jpg";
+import g10 from "@/assets/glimpses/g10.jpg";
 
-const colA = [g1, g3, g5, g7, g9];
-const colB = [g2, g4, g6, g8, g10];
+const colA = [{ url: g1 }, { url: g3 }, { url: g5 }, { url: g7 }, { url: g9 }];
+const colB = [{ url: g2 }, { url: g4 }, { url: g6 }, { url: g8 }, { url: g10 }];
 
 const ImageCard = ({ src, alt }: { src: string; alt: string }) => (
   <div className="group relative overflow-hidden rounded-xl bg-card border border-border/60 shadow-card cursor-pointer transition-all duration-500 hover:shadow-card-hover hover:z-20">
