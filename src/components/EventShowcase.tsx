@@ -8,12 +8,12 @@ import event5 from "@/assets/event-5.jpg";
 import event6 from "@/assets/event-6.jpg";
 
 const events = [
-  { img: event1, title: "Developer Meetup 2024", tag: "Community", date: "Delhi NCR" },
-  { img: event2, title: "Build Sprint Hackathon", tag: "Hackathon", date: "Online" },
-  { img: event3, title: "Design Sprint Workshop", tag: "Workshop", date: "Gurugram" },
-  { img: event4, title: "Tech Talks: Future of Web", tag: "Conference", date: "Bengaluru" },
-  { img: event5, title: "Networking Night", tag: "Networking", date: "Mumbai" },
-  { img: event6, title: "Project Demo Day", tag: "Showcase", date: "Hybrid" },
+  { img: event1, title: "Design Fusion Season 3", tag: "Design Seminar", date: "PW Head Office Noida" },
+  { img: event2, title: "Design Kickstart", tag: "Design Workshop", date: "PW IOI Noida" },
+  { img: event3, title: "Design Edge", tag: "Design Webinar", date: "Google Meet" },
+  { img: event4, title: "UX-Pathway", tag: "Design Webinar", date: "Google Meet" },
+  { img: event5, title: "Portfolio Forge", tag: "Online Design Sprint", date: "Discord" },
+  { img: event6, title: "UI/UX Navigator", tag: "Online Webinar", date: "Google Meet" },
 ];
 
 const EventShowcase = () => {
