@@ -4,7 +4,7 @@ import event1 from "@/assets/event-1.jpg";
 import event2 from "@/assets/event-2.jpg";
 import event3 from "@/assets/event-3.jpg";
 import event4 from "@/assets/ux-pathway-banner.png.asset.json";
-import event5 from "@/assets/event-5.jpg";
+import event5 from "@/assets/portfolio-sprint-banner.png.asset.json";
 import event6 from "@/assets/event-6.jpg";
 
 const events = [
@@ -12,7 +12,7 @@ const events = [
   { img: event2, title: "Design Kickstart", tag: "Design Workshop", date: "PW IOI Noida" },
   { img: event3, title: "Design Breakthrough", tag: "Design Webinar", date: "Google Meet" },
   { img: event4.url, title: "UX-Pathway", tag: "Design Webinar", date: "Google Meet" },
-  { img: event5, title: "Portfolio Sprint", tag: "10 Days Design Sprint", date: "Discord" },
+  { img: event5.url, title: "Portfolio Sprint", tag: "10 Days Design Sprint", date: "Discord" },
   { img: event6, title: "UI/UX Navigator", tag: "Online Webinar", date: "Google Meet" },
 ];
 
