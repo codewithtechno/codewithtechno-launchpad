@@ -10,9 +10,9 @@ import event6 from "@/assets/event-6.jpg";
 const events = [
   { img: event1, title: "Design Fusion Season 3", tag: "Design Seminar", date: "PW Head Office Noida" },
   { img: event2, title: "Design Kickstart", tag: "Design Workshop", date: "PW IOI Noida" },
-  { img: event3, title: "Design Edge", tag: "Design Webinar", date: "Google Meet" },
+  { img: event3, title: "Design Breakthrough", tag: "Design Webinar", date: "Google Meet" },
   { img: event4, title: "UX-Pathway", tag: "Design Webinar", date: "Google Meet" },
-  { img: event5, title: "Portfolio Forge", tag: "Online Design Sprint", date: "Discord" },
+  { img: event5, title: "Portfolio Sprint", tag: "10 Days Design Sprint", date: "Discord" },
   { img: event6, title: "UI/UX Navigator", tag: "Online Webinar", date: "Google Meet" },
 ];
 
