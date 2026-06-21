@@ -1,15 +1,15 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import event1 from "@/assets/event-1.jpg";
-import event2 from "@/assets/event-2.jpg";
+import event1 from "@/assets/design-fusion-s3-banner.png.asset.json";
+import event2 from "@/assets/design-kickstart-banner.png.asset.json";
 import event3 from "@/assets/design-breakthrough-banner.jpg.asset.json";
 import event4 from "@/assets/ux-pathway-banner.png.asset.json";
 import event5 from "@/assets/portfolio-sprint-banner.png.asset.json";
 import event6 from "@/assets/uiux-navigator-banner.png.asset.json";
 
 const events = [
-  { img: event1, title: "Design Fusion Season 3", tag: "Design Seminar", date: "PW Head Office Noida" },
-  { img: event2, title: "Design Kickstart", tag: "Design Workshop", date: "PW IOI Noida" },
+  { img: event1.url, title: "Design Fusion Season 3", tag: "Design Seminar", date: "PW Head Office Noida" },
+  { img: event2.url, title: "Design Kickstart", tag: "Design Workshop", date: "PW IOI Noida" },
   { img: event3.url, title: "Design Breakthrough", tag: "Design Webinar", date: "Google Meet" },
   { img: event4.url, title: "UX-Pathway", tag: "Design Webinar", date: "Google Meet" },
   { img: event5.url, title: "Portfolio Sprint", tag: "10 Days Design Sprint", date: "Discord" },
