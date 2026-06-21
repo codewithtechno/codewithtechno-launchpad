@@ -5,7 +5,7 @@ import event2 from "@/assets/event-2.jpg";
 import event3 from "@/assets/design-breakthrough-banner.jpg.asset.json";
 import event4 from "@/assets/ux-pathway-banner.png.asset.json";
 import event5 from "@/assets/portfolio-sprint-banner.png.asset.json";
-import event6 from "@/assets/event-6.jpg";
+import event6 from "@/assets/uiux-navigator-banner.png.asset.json";
 
 const events = [
   { img: event1, title: "Design Fusion Season 3", tag: "Design Seminar", date: "PW Head Office Noida" },
