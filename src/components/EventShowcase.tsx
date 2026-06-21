@@ -13,7 +13,7 @@ const events = [
   { img: event3.url, title: "Design Breakthrough", tag: "Design Webinar", date: "Google Meet" },
   { img: event4.url, title: "UX-Pathway", tag: "Design Webinar", date: "Google Meet" },
   { img: event5.url, title: "Portfolio Sprint", tag: "10 Days Design Sprint", date: "Discord" },
-  { img: event6, title: "UI/UX Navigator", tag: "Online Webinar", date: "Google Meet" },
+  { img: event6.url, title: "UI/UX Navigator", tag: "Online Webinar", date: "Google Meet" },
 ];
 
 const EventShowcase = () => {
