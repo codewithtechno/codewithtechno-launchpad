@@ -1,5 +1,4 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import event1 from "@/assets/design-fusion-s3-banner.png.asset.json";
 import event2 from "@/assets/design-kickstart-banner.png.asset.json";
 import event3 from "@/assets/design-breakthrough-banner.jpg.asset.json";
@@ -17,16 +16,13 @@ const events = [
 ];
 
 const EventShowcase = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="showcase" className="py-24 lg:py-32 relative" ref={ref}>
+    <section id="showcase" className="py-24 lg:py-32 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-16"
           >
@@ -48,8 +44,8 @@ const EventShowcase = () => {
             {events.map((event, index) => (
               <motion.div
                 key={event.title}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="group relative overflow-hidden rounded-2xl bg-card border border-border/60 shadow-card hover:shadow-card-hover transition-all duration-500 cursor-pointer"
               >
@@ -59,7 +55,8 @@ const EventShowcase = () => {
                     alt={event.title}
                     width={1280}
                     height={720}
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-[1.2s] ease-premium group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
