@@ -1,7 +1,8 @@
+import heroCommunity from "@/assets/hero-community.jpg";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Calendar, Sparkles, ShieldCheck, Star } from "lucide-react";
-const heroImage = { url: "/assets/hero-community.jpg" };
+
 
 const COMMUDLE_URL = "https://www.commudle.com/communities/codewithtechno";
 
@@ -11,7 +12,7 @@ const Hero = () => {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src={heroImage.url}
+          src={heroCommunity}
           alt="CodeWithTechno community meetup"
           loading="eager"
           className="w-full h-full object-cover object-center"
