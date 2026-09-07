@@ -6,13 +6,16 @@ import event4 from "@/assets/ux-pathway-banner.png.asset.json";
 import event5 from "@/assets/portfolio-sprint-banner.png.asset.json";
 import event6 from "@/assets/uiux-navigator-banner.png.asset.json";
 
+const ASSET_ORIGIN = "https://code-ignite-future.lovable.app";
+const assetUrl = (url: string) => `${ASSET_ORIGIN}${url}`;
+
 const events = [
-  { img: event1.url, title: "Design Fusion Season 3", tag: "Design Seminar", date: "PW Head Office Noida" },
-  { img: event2.url, title: "Design Kickstart", tag: "Design Workshop", date: "PW IOI Noida" },
-  { img: event3.url, title: "Design Breakthrough", tag: "Design Webinar", date: "Google Meet" },
-  { img: event4.url, title: "UX-Pathway", tag: "Design Webinar", date: "Google Meet" },
-  { img: event5.url, title: "Portfolio Sprint", tag: "10 Days Design Sprint", date: "Discord" },
-  { img: event6.url, title: "UI/UX Navigator", tag: "Online Webinar", date: "Google Meet" },
+  { img: assetUrl(event1.url), title: "Design Fusion Season 3", tag: "Design Seminar", date: "PW Head Office Noida" },
+  { img: assetUrl(event2.url), title: "Design Kickstart", tag: "Design Workshop", date: "PW IOI Noida" },
+  { img: assetUrl(event3.url), title: "Design Breakthrough", tag: "Design Webinar", date: "Google Meet" },
+  { img: assetUrl(event4.url), title: "UX-Pathway", tag: "Design Webinar", date: "Google Meet" },
+  { img: assetUrl(event5.url), title: "Portfolio Sprint", tag: "10 Days Design Sprint", date: "Discord" },
+  { img: assetUrl(event6.url), title: "UI/UX Navigator", tag: "Online Webinar", date: "Google Meet" },
 ];
 
 const EventShowcase = () => {
